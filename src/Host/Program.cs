@@ -33,6 +33,7 @@ namespace Host
             // define the cluster configuration
             var builder = new SiloHostBuilder()
                 .UseLocalhostClustering()
+                .UseDashboard()  //http://localhost:8080
                 .Configure<ClusterOptions>(options =>
                 {
                     options.ClusterId = "dev";

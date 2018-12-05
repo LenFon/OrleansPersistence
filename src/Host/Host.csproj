@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Orleans.OrleansSQLUtils" Version="2.1.2" />
     <PackageReference Include="Microsoft.Orleans.Server" Version="2.1.2" />
+    <PackageReference Include="OrleansDashboard" Version="2.1.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
   </ItemGroup>
 
