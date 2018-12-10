@@ -1,4 +1,5 @@
-﻿using Orleans;
+﻿using Microsoft.Extensions.Logging;
+using Orleans;
 using Orleans.Configuration;
 using Orleans.Hosting;
 using System;
@@ -30,25 +31,30 @@ namespace Host
 
         private static async Task<ISiloHost> StartSilo()
         {
+            var siloPort = new Random().Next(10000, 20000);
+            Console.WriteLine(siloPort);
             // define the cluster configuration
             var builder = new SiloHostBuilder()
-                .UseLocalhostClustering()
-                .UseDashboard()  //http://localhost:8080
-                .Configure<ClusterOptions>(options =>
-                {
-                    options.ClusterId = "dev";
-                    options.ServiceId = "myApp";
-                })
-                .AddAdoNetGrainStorageAsDefault(options =>
-                {
-                    options.ConnectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=OrleansDb;User Id=sa;Password=1;";
-                    //options.Invariant = "MySql.Data.MySqlClient";
-                    options.UseJsonFormat = true;
-                })
-                .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
-                .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(Grains.HelloGrain).Assembly).WithReferences())
- //.ConfigureLogging(logging => logging.AddConsole())
- ;
+             .UseLocalhostClustering(siloPort: siloPort)
+             .UseDashboard()  //http://localhost:8080
+             .Configure<ClusterOptions>(options =>
+             {
+                 options.ClusterId = "dev";
+                 options.ServiceId = "myApp";
+             })
+             .AddAdoNetGrainStorageAsDefault(options =>
+             {
+                 options.ConnectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=OrleansDb;User Id=sa;Password=1;";
+                 //options.Invariant = "MySql.Data.MySqlClient";
+                 options.UseJsonFormat = true;
+             })
+             .Configure<EndpointOptions>(options =>
+             {
+                 options.AdvertisedIPAddress = IPAddress.Loopback;
+             })
+             .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(Grains.HelloGrain).Assembly).WithReferences())
+             //.ConfigureLogging(logging => logging.AddConsole())
+             ;
 
             var host = builder.Build();
 
