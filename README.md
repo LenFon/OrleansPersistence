@@ -1,2 +1,2 @@
 # OrleansPersistence
-Orleans采用SqlServer进行数据持久化的示例
+Orleans采用database进行数据持久化的示例
