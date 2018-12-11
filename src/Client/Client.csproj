@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Orleans.Client" Version="2.1.2" />
+    <PackageReference Include="Microsoft.Orleans.OrleansSQLUtils" Version="2.1.2" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using IGrains;
 using Orleans;
 using Orleans.Configuration;
+using Orleans.Hosting;
 using Orleans.Runtime;
 using System;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace Client
                     }
                 }
             }
-  
+
         }
 
         private static async Task<IClusterClient> StartClientWithRetries()
@@ -46,6 +47,11 @@ namespace Client
                     options.ClusterId = "dev";
                     options.ServiceId = "myApp";
                 })
+                //.UseAdoNetClustering(options =>
+                //{
+                //    options.ConnectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=OrleansDb;User Id=sa;Password=1;";
+                //    options.Invariant = "System.Data.SqlClient";
+                //})
                 //.ConfigureLogging(logging => logging.AddConsole())
                 .Build();
 
