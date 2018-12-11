@@ -42,11 +42,11 @@ namespace Host
                  options.ClusterId = "dev";
                  options.ServiceId = "myApp";
              })
-             //.UseAdoNetClustering(options =>
-             //{
-             //    options.ConnectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=OrleansDb;User Id=sa;Password=1;";
-             //    options.Invariant = "System.Data.SqlClient";
-             //})
+             .UseAdoNetClustering(options =>
+             {
+                 options.ConnectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=OrleansDb;User Id=sa;Password=1;";
+                 options.Invariant = "System.Data.SqlClient";
+             })
              .AddAdoNetGrainStorageAsDefault(options =>
              {
                  options.ConnectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=OrleansDb;User Id=sa;Password=1;";

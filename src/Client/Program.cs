@@ -47,11 +47,11 @@ namespace Client
                     options.ClusterId = "dev";
                     options.ServiceId = "myApp";
                 })
-                //.UseAdoNetClustering(options =>
-                //{
-                //    options.ConnectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=OrleansDb;User Id=sa;Password=1;";
-                //    options.Invariant = "System.Data.SqlClient";
-                //})
+                .UseAdoNetClustering(options =>
+                {
+                    options.ConnectionString = "Server=(LocalDb)\\MSSQLLocalDB;Database=OrleansDb;User Id=sa;Password=1;";
+                    options.Invariant = "System.Data.SqlClient";
+                })
                 //.ConfigureLogging(logging => logging.AddConsole())
                 .Build();
 
