@@ -2,6 +2,7 @@
 using Orleans;
 using Orleans.Providers;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Grains
@@ -11,7 +12,7 @@ namespace Grains
     {
         public async Task<string> SayHello(string greeting)
         {
-            Console.WriteLine(greeting);
+            Console.WriteLine(State.Text);
             State.Text = greeting;
 
             await WriteStateAsync();
