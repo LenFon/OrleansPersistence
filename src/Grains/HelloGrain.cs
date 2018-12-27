@@ -14,6 +14,9 @@ namespace Grains
         {
             Console.WriteLine(State.Text);
             State.Text = greeting;
+            State.Num++;
+
+            Console.WriteLine("State Num:" + State.Num);
 
             await WriteStateAsync();
             return $"You said: '{greeting}', I say: Hello!";
@@ -23,5 +26,7 @@ namespace Grains
     public class HelloState
     {
         public string Text { get; set; }
+
+        public int Num { get; set; } = 0;
     }
 }
